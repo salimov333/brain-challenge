@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Brain Challenge</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Cairo:wght@400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- =================== WELCOME SCREEN =================== -->
+      <div id="welcome-screen" class="screen card active">
+        <div class="logo-area">
+          <span class="logo-icon">🧠</span>
+          <h1>تحدي العقول</h1>
+          <p class="welcome-desc">
+            اختبر ذكاءك مع 110 سؤال في الرياضيات والمنطق عبر 5 مستويات تصاعدية.
+            أجب بدقة، واجمع النقاط، وتسلق سلّم التحدي!
+          </p>
+        </div>
+
+        <div id="welcome-stats" class="stats-bar" style="display: none">
+          <div class="stat-chip">🏆 نقاطك: <span id="saved-score">0</span></div>
+          <div class="stat-chip">📍 آخر سؤال: <span id="saved-q">-</span></div>
+        </div>
+
+        <div
+          style="
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+          "
+        >
+          <button class="btn btn-primary" onclick="App.startFresh()">
+            🚀 ابدأ التحدي
+          </button>
+          <button
+            id="btn-resume"
+            class="btn btn-secondary"
+            style="display: none"
+            onclick="App.resume()"
+          >
+            ▶️ متابعة
+          </button>
+          <button class="btn btn-secondary" onclick="App.showLevelSelect()">
+            🎯 اختر المستوى
+          </button>
+        </div>
+      </div>
+
+      <!-- =================== LEVEL SELECT SCREEN =================== -->
+      <div id="level-screen" class="screen">
+        <div class="card">
+          <div class="section-title"><h2>🎯 اختر المستوى</h2></div>
+          <p style="color: var(--text-muted); margin-bottom: 8px">
+            حدد المستوى الذي تريد البدء منه
+          </p>
+          <div class="level-grid" id="level-grid"></div>
+          <div style="margin-top: 20px; text-align: center">
+            <button class="btn btn-secondary" onclick="App.showWelcome()">
+              ← رجوع
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- =================== QUIZ SCREEN =================== -->
+      <div id="quiz-screen" class="screen">
+        <div class="quiz-header">
+          <div class="quiz-meta">
+            <div class="badge badge-accent" id="level-badge">المستوى 1</div>
+            <div class="badge" id="q-counter">سؤال 1 / 20</div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 16px">
+            <div id="score-el" class="score-display">0 نقطة</div>
+            <button
+              class="btn btn-secondary"
+              style="padding: 8px 14px; font-size: 0.85rem"
+              onclick="App.showLevelSelect()"
+            >
+              قائمة المستويات
+            </button>
+          </div>
+        </div>
+
+        <div class="progress-wrap">
+          <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-number">
+            <span class="q-dot"></span>
+            <span id="q-num-label">السؤال 1</span>
+          </div>
+          <div id="question-text" class="question-text">...جارٍ التحميل</div>
+        </div>
+
+        <textarea
+          id="answer-input"
+          class="answer-input"
+          rows="2"
+          placeholder="اكتب إجابتك هنا…"
+        ></textarea>
+
+        <div class="actions">
+          <button class="btn btn-primary" onclick="App.submitAnswer()">
+            ✅ تحقق من الإجابة
+          </button>
+          <button class="btn btn-gold" onclick="App.showAnswer()">
+            💡 اعرض الإجابة الصحيحة
+          </button>
+        </div>
+
+        <div id="feedback" class="feedback"></div>
+
+        <div class="nav-row">
+          <button class="btn btn-secondary" onclick="App.prevQuestion()">
+            → السابق
+          </button>
+          <button
+            id="btn-next"
+            class="btn btn-primary"
+            onclick="App.nextQuestion()"
+          >
+            التالي ←
+          </button>
+        </div>
+      </div>
+
+      <!-- =================== RESULTS SCREEN =================== -->
+      <div id="results-screen" class="screen">
+        <div class="card">
+          <div class="result-hero">
+            <div id="result-icon" class="result-icon">🏆</div>
+            <div id="result-score" class="result-score">0</div>
+            <div class="result-label">نقطة إجمالية</div>
+            <p
+              id="result-msg"
+              style="margin-top: 12px; color: var(--text-muted)"
+            ></p>
+          </div>
+          <div class="result-actions">
+            <button class="btn btn-primary" onclick="App.startFresh()">
+              🔄 ابدأ من جديد
+            </button>
+            <button class="btn btn-secondary" onclick="App.showLevelSelect()">
+              🎯 اختر مستوى
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /#app -->
+
+    <!-- Celebration overlay -->
+    <div id="celebration">
+      <div id="celebration-msg" class="celebration-msg">
+        🎉 إجابة صحيحة! +10 نقاط
+      </div>
+    </div>
+    <div id="confetti-wrap" class="confetti-wrap"></div>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
