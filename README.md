@@ -75,9 +75,33 @@ brain-challenge/
 ├── style.css      # All CSS styles
 ├── app.js         # Application logic (ES Module)
 ├── db.js          # Questions & metadata (ES Module)
+├── test.js        # Testing script for validating answers
 ├── questions.md   # Original questions source
 └── README.md      # This file
 ```
+
+---
+
+## Testing Script
+
+This project includes a testing script to validate that all questions have matching answers.
+
+### Run Tests
+
+**Node.js:**
+```bash
+node test.js
+```
+
+**Browser:**
+1. Open `index.html` in a browser
+2. Open Developer Console (F12)
+3. Run:
+```javascript
+import('./test.js').then(m => m.printTestResults());
+```
+
+The test validates all 110 questions and outputs results to the console.
 
 ---
 
