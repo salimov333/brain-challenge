@@ -1,0 +1,233 @@
+{
+  "app": {
+    "title": "Hirn-Challenge",
+    "welcomeDesc": "Teste deine Intelligenz mit 110 Mathematik- und Logikfragen auf 5 progressiven Stufen. Antworte präzise, sammle Punkte und erklimme die Herausforderungsleiter!"
+  },
+  "welcome": {
+    "start": "Herausforderung starten",
+    "resume": "Fortsetzen",
+    "selectLevel": "Stufe wählen"
+  },
+  "levels": {
+    "select": "Stufe wählen",
+    "selectDesc": "Wähle die Stufe, von der du starten möchtest",
+    "level": "Stufe",
+    "back": "Zurück"
+  },
+  "quiz": {
+    "question": "Frage",
+    "checkAnswer": "Antwort prüfen",
+    "showAnswer": "Richtige Antwort zeigen",
+    "previous": "Vorherige",
+    "next": "Nächste",
+    "prevArrow": "←",
+    "nextArrow": "→",
+    "levelList": "Stufenliste",
+    "placeholder": "Gib hier deine Antwort ein..."
+  },
+  "results": {
+    "playAgain": "Nochmal spielen",
+    "selectLevel": "Stufe wählen",
+    "legendary": "Legendäre Leistung! Du bist ein wahres Genie.",
+    "excellent": "Ausgezeichnet! Deine Mathe-Fähigkeiten sind erstaunlich.",
+    "good": "Sehr gut! Weiter üben.",
+    "thanks": "Danke für die Teilnahme! Versuche es erneut, um dein Ergebnis zu verbessern.",
+    "totalScore": "Gesamtpunktzahl"
+  },
+  "levelsData": {
+    "سهل": "Leicht",
+    "متوسط": "Mittel",
+    "صعب": "Schwer",
+    "شديد": "Extrem",
+    "عبقري": "Genie"
+  },
+  "levelMeta": {
+    "range1": "Fragen 1–20",
+    "range2": "Fragen 21–50",
+    "range3": "Fragen 51–75",
+    "range4": "Fragen 76–90",
+    "range5": "Fragen 91–110",
+    "desc1": "Einfache logische und arithmetische Probleme",
+    "desc2": "Mittlere mathematische Herausforderungen",
+    "desc3": "Tiefere und komplexere Probleme",
+    "desc4": "Extremstufe - für Fortgeschrittene",
+    "desc5": "Nur Genie-Stufe"
+  },
+  "feedback": {
+    "correct": "Richtige Antwort!",
+    "wrong": "Falsche Antwort!",
+    "enterAnswer": "Bitte gib zuerst deine Antwort ein!",
+    "alreadyCorrect": "Du hast diese Frage richtig beantwortet",
+    "alreadyCorrectPrev": "Du hast diese Frage bereits vorher richtig beantwortet!",
+    "peekedAnswer": "Richtige Antwort",
+    "wrongTryAgain": "Du hast falsch geantwortet. Versuche es erneut!",
+    "levelComplete": "Du hast Stufe",
+    "goToNext": "Gehe zu Stufe"
+  },
+  "saved": {
+    "score": "Deine Punkte",
+    "lastQuestion": "Letzte Frage",
+    "points": "Punkte"
+  },
+  "language": {
+    "label": "Sprache",
+    "ar": "العربية",
+    "en": "English",
+    "de": "Deutsch"
+  },
+  "questionsData": [
+    {
+      "name": "Leicht",
+      "emoji": "⭐",
+      "color": "#34d399",
+      "questions": [
+        { "q": "Was ist die nächste Zahl in der Reihe: 5, 10, 20, 40, … ?", "a": "80" },
+        { "q": "Zwei Zahlen ergeben zusammen 20 und unterscheiden sich um 4, eine ist 8, was ist die andere Zahl?", "a": "12" },
+        { "q": "Ein Quadrat hat einen Flächeninhalt von 144, wie lang ist seine Seite?", "a": "12" },
+        { "q": "Ein rechtwinkliges Dreieck hat die Seiten 5 und 12, was ist die Hypotenuse?", "a": "13" },
+        { "q": "Eine Zahl mal 4 plus 8 ergibt 40, was ist die Zahl?", "a": "8" },
+        { "q": "Ein 2×3 Quadratgitter, wie viele Rechtecke sind möglich?", "a": "18" },
+        { "q": "Ein Würfel hat Seitenlänge 4, was ist sein Volumen?", "a": "64" },
+        { "q": "Was ist die Summe der Zahlen von 1 bis 20?", "a": "210" },
+        { "q": "Eine zweistellige Zahl, die Summe ihrer Ziffern ist 10 und die Differenz ist 4, was ist die größere Zahl?", "a": "7" },
+        { "q": "Was ist die nächste Zahl in der Reihe: 2, 6, 18, 54, … ?", "a": "162" },
+        { "q": "Ein Rechteck hat Länge 9 und Breite 7, was ist sein Flächeninhalt?", "a": "63" },
+        { "q": "Wenn (x+3=17), finde (x).", "a": "14" },
+        { "q": "Wie viele Diagonalen hat ein 6-seitiges Polygon?", "a": "9" },
+        { "q": "Ein rechtwinkliges Dreieck hat Hypotenuse 10 und eine Seite 6, was ist die andere Seite?", "a": "8" },
+        { "q": "Was ist die nächste Zahl in der Reihe: 1, 4, 9, 16, … ?", "a": "25" },
+        { "q": "Eine positive Zahl ergibt quadriert 81, was ist die Zahl?", "a": "9" },
+        { "q": "Eine Box enthält 5 Bälle. Wie viele Möglichkeiten gibt es, 2 Bälle zusammen zu ziehen?", "a": "10" },
+        { "q": "Was ist die Summe der ersten 10 geraden Zahlen?", "a": "110" },
+        { "q": "Ein Würfel hat Seitenlänge 3, was ist die Summe aller seiner Kanten?", "a": "36" },
+        { "q": "Was ist die nächste Zahl in der Reihe: 3, 7, 13, 21, … ?", "a": "31" }
+      ]
+    },
+    {
+      "name": "Mittel",
+      "emoji": "⭐⭐",
+      "color": "#60a5fa",
+      "questions": [
+        { "q": "Was ist die nächste Zahl in der Reihe: 1, 3, 6, 10, … ?", "a": "15" },
+        { "q": "Ein 3×4 Gitter, wie viele Rechtecke sind möglich?", "a": "60" },
+        { "q": "Ein rechtwinkliges Dreieck hat die Seiten 8 und 15, was ist die Hypotenuse?", "a": "17" },
+        { "q": "Wie viele Möglichkeiten gibt es, 2 aus 5 Elementen zu wählen?", "a": "10" },
+        { "q": "Was ist die Summe der Vielfachen von 5 von 5 bis 50?", "a": "275" },
+        { "q": "Ein Quader ist 3×4×12, was ist sein Volumen?", "a": "144" },
+        { "q": "Wie viele Zahlen zwischen 1 und 100 sind durch 4 teilbar?", "a": "25" },
+        { "q": "Wie viele Seiten hat ein Polygon, dessen Winkelsumme 720° beträgt?", "a": "6" },
+        { "q": "Ein Würfel hat Seite 5, wie viele 1×1×1 Würfel passen hinein?", "a": "125" },
+        { "q": "Was ist die nächste Zahl in der Reihe: 2, 5, 10, 17, … ?", "a": "26" },
+        { "q": "Wie viele Möglichkeiten gibt es, 3 verschiedene Bücher anzuordnen?", "a": "6" },
+        { "q": "Ein Rechteck hat Umfang 40 und Länge 12, was ist seine Breite?", "a": "8" },
+        { "q": "Wie viele positive Teiler hat 36?", "a": "9" },
+        { "q": "Ein gleichschenkliges Dreieck mit gleichen Seiten 13 und Basis 10, was ist seine Höhe?", "a": "12" },
+        { "q": "Ein 4×4 Gitter, wie viele Quadrate enthält es?", "a": "30" },
+        { "q": "Was ist die nächste Zahl in der Reihe: 3, 6, 12, 24, … ?", "a": "48" },
+        { "q": "Wie viele Möglichkeiten gibt es, ein Komitee von 2 Personen aus 6 Personen zu wählen?", "a": "15" },
+        { "q": "Was ist die Winkelsumme eines 8-seitigen Polygons?", "a": "1080" },
+        { "q": "Wie viele Primzahlen sind kleiner als 20?", "a": "8" },
+        { "q": "Ein Würfel hat Volumen 216, was ist die Länge seiner Seite?", "a": "6" },
+        { "q": "Was ist die nächste Zahl in der Reihe: 1, 1, 2, 3, 5, … ?", "a": "8" },
+        { "q": "Ein Rechteck hat Flächeninhalt 96 und Breite 8, was ist seine Länge?", "a": "12" },
+        { "q": "Wie viele Möglichkeiten gibt es, ein 4-buchstabiges Wort mit verschiedenen Buchstaben anzuordnen?", "a": "24" },
+        { "q": "Ein 2×2 Gitter, wie viele Rechtecke enthält es?", "a": "9" },
+        { "q": "Ein rechtwinkliges Dreieck hat Hypotenuse 17 und eine Seite 8, was ist die andere Seite?", "a": "15" },
+        { "q": "Was ist die Summe der Zahlen von 1 bis 50?", "a": "1275" },
+        { "q": "Wie viele Diagonalen hat ein 10-seitiges Polygon?", "a": "35" },
+        { "q": "Was ist die nächste Zahl in der Reihe: 5, 9, 17, 33, … ?", "a": "65" },
+        { "q": "Wie viele Ergebnisse gibt es, wenn man einen Würfel zweimal wirft?", "a": "36" },
+        { "q": "Eine Box hat 4 schwarze und 6 weiße Bälle, wie viele Möglichkeiten gibt es, einen Ball zu wählen?", "a": "10" }
+      ]
+    },
+    {
+      "name": "Schwer",
+      "emoji": "⭐⭐⭐",
+      "color": "#818cf8",
+      "questions": [
+        { "q": "Ein 5×5 Gitter, wie viele Rechtecke enthält es?", "a": "225" },
+        { "q": "Wie viele Möglichkeiten gibt es, 5 Elemente anzuordnen?", "a": "120" },
+        { "q": "Was ist die nächste Zahl in der Reihe: 2, 6, 24, 120, … ?", "a": "720" },
+        { "q": "Wie viele Lösungen gibt es für (x+y=10) mit positiven Zahlen?", "a": "9" },
+        { "q": "Ein rechtwinkliges Dreieck hat die Seiten 20 und 21, was ist die Hypotenuse?", "a": "29" },
+        { "q": "Wie viele Möglichkeiten gibt es, 3 aus 7 zu wählen?", "a": "35" },
+        { "q": "Was ist die Summe der ersten 30 natürlichen Zahlen?", "a": "465" },
+        { "q": "Wie viele Teiler hat 48?", "a": "10" },
+        { "q": "Ein Würfel mit Seite 6, wie viele 1×1×1 kleine Würfel sind auf der Oberfläche?", "a": "152" },
+        { "q": "Was ist die nächste Zahl in der Reihe: 4, 7, 13, 25, … ?", "a": "49" },
+        { "q": "Wie viele Möglichkeiten gibt es, 4 Elemente aus 6 anzuordnen?", "a": "360" },
+        { "q": "Ein Rechteck hat Flächeninhalt 180 und Länge 15, was ist seine Breite?", "a": "12" },
+        { "q": "Wie viele Zahlen zwischen 1 und 200 sind durch 6 teilbar?", "a": "33" },
+        { "q": "Wie viele Diagonalen hat ein 12-seitiges Polygon?", "a": "54" },
+        { "q": "Was ist die nächste Zahl in der Reihe: 1, 4, 10, 20, … ?", "a": "35" },
+        { "q": "Ein gleichschenkliges Dreieck mit gleichen Seiten 10 und Basis 12, was ist seine Höhe?", "a": "8" },
+        { "q": "Wie viele Möglichkeiten gibt es, 3 verschiedene Preise an 5 Personen zu verteilen?", "a": "60" },
+        { "q": "Ein 3×3×3 Gitter, wie viele 1×1×1 Würfel kann es enthalten?", "a": "27" },
+        { "q": "Was ist die Summe der Vielfachen von 3 bis 99?", "a": "1683" },
+        { "q": "Wie viele Möglichkeiten gibt es, ein Team von 4 Personen aus 8 Personen zu wählen?", "a": "70" },
+        { "q": "Ein Quader ist 5×12×13, was ist sein Volumen?", "a": "780" },
+        { "q": "Wie viele Möglichkeiten gibt es, ein 6-buchstabiges Wort mit verschiedenen Buchstaben anzuordnen?", "a": "720" },
+        { "q": "Wie viele Quadratzahlen gibt es zwischen 1 und 100?", "a": "10" },
+        { "q": "Ein rechtwinkliges Dreieck hat Hypotenuse 25 und eine Seite 7, was ist die andere Seite?", "a": "24" },
+        { "q": "Wie viele Möglichkeiten gibt es, 2 aus 10 zu wählen?", "a": "45" }
+      ]
+    },
+    {
+      "name": "Extrem",
+      "emoji": "⭐⭐⭐⭐",
+      "color": "#fb923c",
+      "questions": [
+        { "q": "Ein 6×6 Gitter, wie viele Rechtecke enthält es?", "a": "441" },
+        { "q": "Wie viele Möglichkeiten gibt es, 7 Elemente anzuordnen?", "a": "5040" },
+        { "q": "Wie viele Möglichkeiten gibt es, 5 aus 9 zu wählen?", "a": "126" },
+        { "q": "Was ist die nächste Zahl in der Reihe: 1, 3, 7, 15, … ?", "a": "31" },
+        { "q": "Was ist die Summe der ersten 100 natürlichen Zahlen?", "a": "5050" },
+        { "q": "Wie viele Zahlen von 1 bis 500 sind durch 8 teilbar?", "a": "62" },
+        { "q": "Wie viele Diagonalen hat ein 20-seitiges Polygon?", "a": "170" },
+        { "q": "Ein Quader ist 8×15×17, was ist sein Volumen?", "a": "2040" },
+        { "q": "Ein rechtwinkliges Dreieck hat die Seiten 9 und 40, was ist die Hypotenuse?", "a": "41" },
+        { "q": "Wie viele Möglichkeiten gibt es, 3 Elemente aus 10 anzuordnen?", "a": "720" },
+        { "q": "Wie viele Möglichkeiten gibt es, 4 verschiedene Bücher an 4 Schüler zu verteilen?", "a": "24" },
+        { "q": "Ein 4×5 Gitter, wie viele Rechtecke enthält es?", "a": "150" },
+        { "q": "Wie viele Teiler hat 72?", "a": "12" },
+        { "q": "Was ist die nächste Zahl in der Reihe: 2, 5, 14, 41, … ?", "a": "122" },
+        { "q": "Wie viele Möglichkeiten gibt es, ein Komitee von 5 Personen aus 10 zu wählen?", "a": "252" }
+      ]
+    },
+    {
+      "name": "Genie",
+      "emoji": "🏆",
+      "color": "#fbbf24",
+      "questions": [
+        { "q": "Wie viele Möglichkeiten gibt es, 8 Elemente anzuordnen?", "a": "40320" },
+        { "q": "Wie viele Möglichkeiten gibt es, 6 aus 12 zu wählen?", "a": "924" },
+        { "q": "Was ist die Summe der Quadrate der Zahlen von 1 bis 10?", "a": "385" },
+        { "q": "Ein 7×7 Gitter, wie viele Rechtecke enthält es?", "a": "784" },
+        { "q": "Wie viele Zahlen zwischen 1 und 1000 sind durch 9 teilbar?", "a": "111" },
+        { "q": "Wie viele Diagonalen hat ein 50-seitiges Polygon?", "a": "1175" },
+        { "q": "Ein rechtwinkliges Dreieck hat die Seiten 28 und 45, was ist die Hypotenuse?", "a": "53" },
+        { "q": "Wie viele Möglichkeiten gibt es, 5 Elemente aus 9 anzuordnen?", "a": "15120" },
+        { "q": "Was ist die nächste Zahl in der Reihe: 3, 9, 27, 81, … ?", "a": "243" },
+        { "q": "Was ist die Summe der ersten 50 ungeraden Zahlen?", "a": "2500" },
+        { "q": "Wie viele Möglichkeiten gibt es, 5 verschiedene Preise an 3 Gewinner zu verteilen?", "a": "243" },
+        { "q": "Wie viele Teiler hat 120?", "a": "16" },
+        { "q": "Ein gleichschenkliges Dreieck mit gleichen Seiten 17 und Basis 16, was ist seine Höhe?", "a": "15" },
+        { "q": "Ein 8×5 Gitter, wie viele Rechtecke enthält es?", "a": "540" },
+        { "q": "Wie viele Möglichkeiten gibt es, 2 aus 20 zu wählen?", "a": "190" },
+        { "q": "Ein Würfel mit Seite 10, wie viele 1×1×1 kleine Würfel passen hinein?", "a": "1000" },
+        { "q": "Was ist die Summe der Vielfachen von 7 bis 700?", "a": "35350" },
+        { "q": "Wie viele Möglichkeiten gibt es, ein 9-buchstabiges Wort mit verschiedenen Buchstaben anzuordnen?", "a": "362880" },
+        { "q": "Ein Quader ist 9×10×11, was ist sein Volumen?", "a": "990" },
+        { "q": "Wie viele Primzahlen sind kleiner als 30?", "a": "10" }
+      ]
+    }
+  ],
+  "levelMetaData": [
+    { "range": "Fragen 1–20", "desc": "Einfache logische und arithmetische Probleme" },
+    { "range": "Fragen 21–50", "desc": "Mittlere mathematische Herausforderungen" },
+    { "range": "Fragen 51–75", "desc": "Tiefere und komplexere Probleme" },
+    { "range": "Fragen 76–90", "desc": "Extremstufe - für Fortgeschrittene" },
+    { "range": "Fragen 91–110", "desc": "Nur Genie-Stufe" }
+  ]
+}
+

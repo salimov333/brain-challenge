@@ -1,7 +1,11 @@
 /* ============================================================
-   Import data from db.js
+   Import data from i18n.js (loads from locale JSON files)
 =========================================================== */
-import { LEVELS, LEVEL_META } from './db.js';
+import { getLevels, getLevelMeta, initI18n, t } from './i18n.js';
+
+// Global state for levels - loaded from i18n
+let LEVELS = [];
+let LEVEL_META = [];
 
 /* ============================================================
    STATE & STORAGE
@@ -47,7 +51,14 @@ const App = (function () {
   /* ----------------------------------------------------------------
      INIT
   ---------------------------------------------------------------- */
-  function init() {
+  async function init() {
+    // First initialize i18n to load translations and levels
+    await initI18n();
+    
+    // Load levels from i18n (based on current language)
+    LEVELS = getLevels();
+    LEVEL_META = getLevelMeta();
+    
     buildLevelGrid();
     _checkSavedState();
   }
@@ -63,8 +74,11 @@ const App = (function () {
     ) {
       document.getElementById("welcome-stats").style.display = "flex";
       document.getElementById("saved-score").textContent = saved.score;
+      
+      // Use translated level text
+      const levelName = LEVEL_META[saved.currentLevel]?.range || `Level ${saved.currentLevel + 1}`;
       document.getElementById("saved-q").textContent =
-        `مستوى ${saved.currentLevel + 1}، سؤال ${saved.currentQuestion + 1}`;
+        `${levelName}, ${t('quiz.question')} ${saved.currentQuestion + 1}`;
       document.getElementById("btn-resume").style.display = "inline-flex";
     }
   }
@@ -93,19 +107,29 @@ const App = (function () {
   function buildLevelGrid() {
     const grid = document.getElementById("level-grid");
     grid.innerHTML = "";
+    
+    if (!LEVELS || LEVELS.length === 0) {
+      grid.innerHTML = '<p style="text-align:center;color:var(--text-muted)">Loading...</p>';
+      return;
+    }
+    
     LEVELS.forEach((lvl, i) => {
       const saved = loadState();
       const progress = _levelProgress(i, saved);
       const isCompleted = progress >= 100;
+      
+      // Get translated level name
+      const levelName = lvl.name || `Level ${i + 1}`;
+      const levelRange = LEVEL_META[i]?.range || `Questions ${i * 20 + 1}-${(i + 1) * 20}`;
 
       const card = document.createElement("div");
       card.className = "level-card" + (isCompleted ? " completed" : "");
       card.style.setProperty("--lc", lvl.color);
       card.innerHTML = `
         <span class="level-emoji">${lvl.emoji}</span>
-        <div class="level-name" style="color:${lvl.color}">المستوى ${i + 1}</div>
-        <div class="level-name">${lvl.name}</div>
-        <div class="level-range">${LEVEL_META[i].range}</div>
+        <div class="level-name" style="color:${lvl.color}">${t('levels.level')} ${i + 1}</div>
+        <div class="level-name">${levelName}</div>
+        <div class="level-range">${levelRange}</div>
         <div class="level-progress" style="margin-top:10px">
           <div class="level-progress-fill" style="width:${progress}%;background:${lvl.color}"></div>
         </div>
@@ -117,7 +141,7 @@ const App = (function () {
 
   /** Calculate completion % for a level based on saved questionStatus */
   function _levelProgress(lvlIdx, saved) {
-    if (!saved || !saved.questionStatus) return 0;
+    if (!saved || !saved.questionStatus || !LEVELS[lvlIdx]) return 0;
     const total = LEVELS[lvlIdx].questions.length;
     let done = 0;
     for (let q = 0; q < total; q++) {
@@ -173,18 +197,24 @@ const App = (function () {
   ---------------------------------------------------------------- */
   function _renderQuestion() {
     const lvl = LEVELS[currentLevel];
+    if (!lvl) return;
+    
     const total = lvl.questions.length;
     const q = lvl.questions[currentQuestion];
     const key = `${currentLevel}-${currentQuestion}`;
     const status = questionStatus[key];
+    
+    // Get translations
+    const levelName = lvl.name || `Level ${currentLevel + 1}`;
+    const questionLabel = t('quiz.question');
 
     // Header badges
     document.getElementById("level-badge").textContent =
-      `المستوى ${currentLevel + 1} – ${lvl.name}`;
+      `${t('levels.level')} ${currentLevel + 1} – ${levelName}`;
     document.getElementById("q-counter").textContent =
-      `سؤال ${currentQuestion + 1} / ${total}`;
+      `${questionLabel} ${currentQuestion + 1} / ${total}`;
     document.getElementById("q-num-label").textContent =
-      `السؤال ${currentQuestion + 1}`;
+      `${questionLabel} ${currentQuestion + 1}`;
 
     // Progress
     const pct = (currentQuestion / total) * 100;
@@ -208,17 +238,17 @@ const App = (function () {
     fb.textContent = "";
 
     if (status === "correct") {
-      input.value = "✅ أجبت على هذا السؤال بشكل صحيح";
+      input.value = "✅ " + t('feedback.alreadyCorrect');
       input.disabled = true;
       input.style.opacity = ".6";
       _showFeedback(
         "correct",
-        "✅ لقد أجبت على هذا السؤال بشكل صحيح سابقًا!",
+        "✅ " + t('feedback.alreadyCorrectPrev'),
       );
     } else if (status === "peeked") {
-      _showFeedback("info", `💡 الإجابة الصحيحة: ${q.a}`);
+      _showFeedback("info", `💡 ${t('feedback.peekedAnswer')}: ${q.a}`);
     } else if (status === "wrong") {
-      _showFeedback("wrong", "❌ أجبت بشكل خاطئ. يمكنك المحاولة مجددًا!");
+      _showFeedback("wrong", "❌ " + t('feedback.wrongTryAgain'));
     }
 
     // Save state on every question render
@@ -251,12 +281,12 @@ const App = (function () {
     return tokens.every((t) => u.includes(t));
   }
 
-  /** Called when user presses "تحقق من الإجابة" */
+  /** Called when user presses check answer button */
   function submitAnswer() {
     const input = document.getElementById("answer-input");
     const userAnswer = input.value.trim();
     if (!userAnswer) {
-      _showFeedback("wrong", "⚠️ الرجاء كتابة إجابتك أولًا!");
+      _showFeedback("wrong", "⚠️ " + t('feedback.enterAnswer'));
       return;
     }
 
@@ -274,7 +304,7 @@ const App = (function () {
       questionStatus[key] = "correct";
       _showFeedback(
         "correct",
-        `🎉 إجابة صحيحة! حصلت على 10 نقاط. الإجابة: ${q.a}`,
+        `🎉 ${t('feedback.correct')} +10 ${t('saved.points')}. ${t('feedback.peekedAnswer')}: ${q.a}`,
       );
       _celebrate();
       // Disable input
@@ -286,7 +316,7 @@ const App = (function () {
       questionStatus[key] = "wrong";
       _showFeedback(
         "wrong",
-        `❌ إجابة خاطئة! خُصمت 10 نقاط. حاول مرة أخرى.`,
+        `❌ ${t('feedback.wrong')} -10 ${t('saved.points')}. ${t('feedback.wrongTryAgain')}`,
       );
     }
 
@@ -294,7 +324,7 @@ const App = (function () {
     _persist();
   }
 
-  /** Called when user presses "اعرض الإجابة الصحيحة" */
+  /** Called when user presses show answer button */
   function showAnswer() {
     const q = LEVELS[currentLevel].questions[currentQuestion];
     const key = `${currentLevel}-${currentQuestion}`;
@@ -308,13 +338,13 @@ const App = (function () {
         _updateScoreDisplay();
         _showFeedback(
           "info",
-          `💡 الإجابة الصحيحة: ${q.a} — خُصمت 10 نقاط.`,
+          `💡 ${t('feedback.peekedAnswer')}: ${q.a} (-10 ${t('saved.points')})`,
         );
       } else {
-        _showFeedback("info", `💡 الإجابة الصحيحة: ${q.a}`);
+        _showFeedback("info", `💡 ${t('feedback.peekedAnswer')}: ${q.a}`);
       }
     } else {
-      _showFeedback("correct", `✅ أجبت بشكل صحيح! الإجابة: ${q.a}`);
+      _showFeedback("correct", `✅ ${t('feedback.alreadyCorrect')}. ${t('feedback.peekedAnswer')}: ${q.a}`);
     }
 
     _persist();
@@ -356,7 +386,7 @@ const App = (function () {
     const next = LEVELS[currentLevel + 1];
     _showFeedback(
       "correct",
-      `🎊 أتممت المستوى ${currentLevel + 1}! الانتقال إلى المستوى ${currentLevel + 2} – ${next.name}`,
+      `🎊 ${t('feedback.levelComplete')} ${currentLevel + 1}! ${t('feedback.goToNext')} ${currentLevel + 2} – ${next.name}`,
     );
     setTimeout(() => {
       currentLevel++;
@@ -373,16 +403,16 @@ const App = (function () {
       msg = "";
     if (score >= 800) {
       icon = "🌟";
-      msg = "أداء أسطوري! أنت عبقري حقيقي.";
+      msg = t('results.legendary');
     } else if (score >= 500) {
       icon = "🏆";
-      msg = "ممتاز! مهاراتك الرياضية رائعة.";
+      msg = t('results.excellent');
     } else if (score >= 200) {
       icon = "🥈";
-      msg = "جيد جدًا! استمر في التدريب.";
+      msg = t('results.good');
     } else {
       icon = "🧠";
-      msg = "شكرًا على المشاركة! حاول مجددًا لتحسين نتيجتك.";
+      msg = t('results.thanks');
     }
 
     document.getElementById("result-icon").textContent = icon;
@@ -396,7 +426,7 @@ const App = (function () {
   ---------------------------------------------------------------- */
   function _updateScoreDisplay() {
     const el = document.getElementById("score-el");
-    el.textContent = score + " نقطة";
+    el.textContent = score + " " + t('saved.points');
     el.classList.remove("score-flash");
     void el.offsetWidth; // reflow to restart animation
     el.classList.add("score-flash");
@@ -419,6 +449,7 @@ const App = (function () {
   function _celebrate() {
     // Show message
     const msg = document.getElementById("celebration-msg");
+    msg.textContent = `🎉 ${t('feedback.correct')} +10 ${t('saved.points')}`;
     msg.classList.add("show");
     // Confetti
     _spawnConfetti();

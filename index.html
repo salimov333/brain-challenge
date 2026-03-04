@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Brain Challenge</title>
+    <title data-i18n="app.title">Brain Challenge</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Cairo:wght@400;600;700;900&display=swap"
@@ -12,21 +12,33 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <!-- Language Switcher -->
+    <div class="lang-switcher">
+      <select id="lang-select" onchange="window.changeLang(this.value)">
+        <option value="en">English</option>
+        <option value="ar">العربية</option>
+        <option value="de">Deutsch</option>
+      </select>
+    </div>
+
     <div id="app">
       <!-- =================== WELCOME SCREEN =================== -->
       <div id="welcome-screen" class="screen card active">
         <div class="logo-area">
           <span class="logo-icon">🧠</span>
-          <h1>تحدي العقول</h1>
-          <p class="welcome-desc">
-            اختبر ذكاءك مع 110 سؤال في الرياضيات والمنطق عبر 5 مستويات تصاعدية.
-            أجب بدقة، واجمع النقاط، وتسلق سلّم التحدي!
+          <h1 data-i18n="app.title">Brain Challenge</h1>
+          <p class="welcome-desc" data-i18n="app.welcomeDesc">
+            Test your intelligence with 110 math and logic questions across 5 progressive levels.
           </p>
         </div>
 
         <div id="welcome-stats" class="stats-bar" style="display: none">
-          <div class="stat-chip">🏆 نقاطك: <span id="saved-score">0</span></div>
-          <div class="stat-chip">📍 آخر سؤال: <span id="saved-q">-</span></div>
+          <div class="stat-chip">
+            🏆 <span data-i18n="saved.score">Your score</span>: <span id="saved-score">0</span>
+          </div>
+          <div class="stat-chip">
+            📍 <span data-i18n="saved.lastQuestion">Last question</span>: <span id="saved-q">-</span>
+          </div>
         </div>
 
         <div
@@ -38,7 +50,7 @@
           "
         >
           <button class="btn btn-primary" onclick="App.startFresh()">
-            🚀 ابدأ التحدي
+            🚀 <span data-i18n="welcome.start">Start Challenge</span>
           </button>
           <button
             id="btn-resume"
@@ -46,10 +58,10 @@
             style="display: none"
             onclick="App.resume()"
           >
-            ▶️ متابعة
+            ▶️ <span data-i18n="welcome.resume">Resume</span>
           </button>
           <button class="btn btn-secondary" onclick="App.showLevelSelect()">
-            🎯 اختر المستوى
+            🎯 <span data-i18n="welcome.selectLevel">Select Level</span>
           </button>
         </div>
       </div>
@@ -57,14 +69,14 @@
       <!-- =================== LEVEL SELECT SCREEN =================== -->
       <div id="level-screen" class="screen">
         <div class="card">
-          <div class="section-title"><h2>🎯 اختر المستوى</h2></div>
-          <p style="color: var(--text-muted); margin-bottom: 8px">
-            حدد المستوى الذي تريد البدء منه
+          <div class="section-title"><h2>🎯 <span data-i18n="levels.select">Select Level</span></h2></div>
+          <p style="color: var(--text-muted); margin-bottom: 8px" data-i18n="levels.selectDesc">
+            Choose the level you want to start from
           </p>
           <div class="level-grid" id="level-grid"></div>
           <div style="margin-top: 20px; text-align: center">
             <button class="btn btn-secondary" onclick="App.showWelcome()">
-              ← رجوع
+              ← <span data-i18n="levels.back">Back</span>
             </button>
           </div>
         </div>
@@ -74,17 +86,17 @@
       <div id="quiz-screen" class="screen">
         <div class="quiz-header">
           <div class="quiz-meta">
-            <div class="badge badge-accent" id="level-badge">المستوى 1</div>
-            <div class="badge" id="q-counter">سؤال 1 / 20</div>
+            <div class="badge badge-accent" id="level-badge">Level 1</div>
+            <div class="badge" id="q-counter"><span data-i18n="quiz.question">Question</span> 1 / 20</div>
           </div>
           <div style="display: flex; align-items: center; gap: 16px">
-            <div id="score-el" class="score-display">0 نقطة</div>
+            <div id="score-el" class="score-display">0 <span data-i18n="saved.score">points</span></div>
             <button
               class="btn btn-secondary"
               style="padding: 8px 14px; font-size: 0.85rem"
               onclick="App.showLevelSelect()"
             >
-              قائمة المستويات
+              <span data-i18n="quiz.levelList">Level List</span>
             </button>
           </div>
         </div>
@@ -96,24 +108,25 @@
         <div class="question-card">
           <div class="question-number">
             <span class="q-dot"></span>
-            <span id="q-num-label">السؤال 1</span>
+            <span id="q-num-label"><span data-i18n="quiz.question">Question</span> 1</span>
           </div>
-          <div id="question-text" class="question-text">...جارٍ التحميل</div>
+          <div id="question-text" class="question-text">...Loading</div>
         </div>
 
         <textarea
           id="answer-input"
           class="answer-input"
           rows="2"
-          placeholder="اكتب إجابتك هنا…"
+          data-i18n-placeholder="quiz.placeholder"
+          placeholder="Type your answer here..."
         ></textarea>
 
         <div class="actions">
           <button class="btn btn-primary" onclick="App.submitAnswer()">
-            ✅ تحقق من الإجابة
+            ✅ <span data-i18n="quiz.checkAnswer">Check Answer</span>
           </button>
           <button class="btn btn-gold" onclick="App.showAnswer()">
-            💡 اعرض الإجابة الصحيحة
+            💡 <span data-i18n="quiz.showAnswer">Show Correct Answer</span>
           </button>
         </div>
 
@@ -121,14 +134,14 @@
 
         <div class="nav-row">
           <button class="btn btn-secondary" onclick="App.prevQuestion()">
-            → السابق
+            <span data-i18n="quiz.prevArrow">←</span> <span data-i18n="quiz.previous">Previous</span>
           </button>
           <button
             id="btn-next"
             class="btn btn-primary"
             onclick="App.nextQuestion()"
           >
-            التالي ←
+            <span data-i18n="quiz.next">Next</span> <span data-i18n="quiz.nextArrow">→</span>
           </button>
         </div>
       </div>
@@ -139,7 +152,7 @@
           <div class="result-hero">
             <div id="result-icon" class="result-icon">🏆</div>
             <div id="result-score" class="result-score">0</div>
-            <div class="result-label">نقطة إجمالية</div>
+            <div class="result-label" data-i18n="results.totalScore">Total Points</div>
             <p
               id="result-msg"
               style="margin-top: 12px; color: var(--text-muted)"
@@ -147,10 +160,10 @@
           </div>
           <div class="result-actions">
             <button class="btn btn-primary" onclick="App.startFresh()">
-              🔄 ابدأ من جديد
+              🔄 <span data-i18n="results.playAgain">Play Again</span>
             </button>
             <button class="btn btn-secondary" onclick="App.showLevelSelect()">
-              🎯 اختر مستوى
+              🎯 <span data-i18n="results.selectLevel">Select Level</span>
             </button>
           </div>
         </div>
@@ -166,6 +179,26 @@
     </div>
     <div id="confetti-wrap" class="confetti-wrap"></div>
 
+    <!-- i18n Module - Load first to enable translations -->
+    <script type="module">
+      import { initI18n, changeLanguage, getLevels, getLevelMeta } from './i18n.js';
+      
+      // Initialize i18n on page load
+      initI18n().then(lang => {
+        document.getElementById('lang-select').value = lang;
+      });
+      
+      // Expose changeLanguage to global scope for the select dropdown
+      window.changeLang = async function(lang) {
+        await changeLanguage(lang);
+        // Update the select element to reflect current language
+        document.getElementById('lang-select').value = lang;
+        
+        // Reload the page to reinitialize with new language
+        window.location.reload();
+      };
+    </script>
+    
     <script type="module" src="app.js"></script>
   </body>
 </html>
