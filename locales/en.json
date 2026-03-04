@@ -8,6 +8,9 @@
     "resume": "Resume",
     "selectLevel": "Select Level"
   },
+  "nav": {
+    "home": "Home"
+  },
   "levels": {
     "select": "Select Level",
     "selectDesc": "Choose the level you want to start from",

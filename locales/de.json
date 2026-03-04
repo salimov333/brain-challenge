@@ -8,6 +8,9 @@
     "resume": "Fortsetzen",
     "selectLevel": "Stufe wählen"
   },
+  "nav": {
+    "home": "Startseite"
+  },
   "levels": {
     "select": "Stufe wählen",
     "selectDesc": "Wähle die Stufe, von der du starten möchtest",
